@@ -1,0 +1,177 @@
+# BLERP Inc. ("BLERP") CONFIDENTIAL
+# Copyright (c) 2016 - 2017 Blerp LLC All Rights Reserved.
+# This file is subject to the terms and conditions defined in the file 'LICENSE',
+#   which is at the root directory of this source code repository.
+
+# Running jobs in this sequence allows us to fail fast move on quicker.
+# If the code is bad or incorrect in any way we know, then if the code doesn't work we know, then if everything lines up we publish.
+stages:
+  - lint # Test the code
+  - test # Test the code
+  - staging
+  - publish
+
+image: node:12
+
+cache:
+  paths:
+    - node_modules
+  key: "$CI_BUILD_NAME"
+  untracked: true
+
+lint:
+  image: node:12
+  tags:
+    - docker
+  stage: test
+  before_script:
+      - npm install
+  script:
+    - npm run lint
+
+jest:
+  image: node:12
+  tags:
+    - docker
+  stage: test
+  before_script:
+      - npm install
+  script:
+    - npm run test
+
+# cypress:
+#   stage: test
+#   image: cypress/base:8
+#   tags:
+#     - docker
+#   before_script:
+#     - yarn
+#   script:
+#     - yarn test:cypress
+#   artifacts:
+#     paths:
+#     - cypress/videos/
+#     - cypress/screenshots/
+
+deploy-staging:
+  tags:
+    - docker
+  image: docker:stable
+
+  variables:
+    # When using dind service we need to instruct docker, to talk with the
+    # daemon started inside of the service. The daemon is available with
+    # a network connection instead of the default /var/run/docker.sock socket.
+    #
+    # The 'docker' hostname is the alias of the service container as described at
+    # https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services
+    #
+    # Note that if you're using Kubernetes executor, the variable should be set to
+    # tcp://localhost:2375 because of how Kubernetes executor connects services
+    # to the job container
+    # DOCKER_HOST: tcp://docker:2375/
+    # # When using dind, it's wise to use the overlayfs driver for
+    # # improved performance.
+    # DOCKER_DRIVER: overlay2
+    # SLS_DEBUG: 'true'
+
+  services:
+   - docker:dind
+
+  before_script:
+   - docker info
+
+  stage: staging
+  only:
+    - master
+    - staging
+  environment:
+    name: staging
+    url: https://staging.blerp.live
+  script:
+    - apk update && apk add openssh
+    - apk add nodejs
+    - apk add npm
+    - npm -v
+    - node -v
+    - npm install
+    - rm -rf dist/
+    - mkdir -p dist/dist/
+    - npm run-script build
+    - cp package.json deploy/package.json
+    - cp deploy/* dist/
+    - cd dist/dist/
+    - ln -s ../.next .next
+    - cd ..
+    - npm install --production
+    - mkdir -p ~/.gcloud/
+    - touch ~/.gcloud/blerp-keyfile.json
+    - apk add --no-cache curl
+    # - echo $GOOGLE_CLOUD_PLATFORM_CREDENTIALS > ~/.gcloud/blerp-keyfile.json
+    # - echo $GOOGLE_CLOUD_PLATFORM_CREDENTIALS > ./blerp-nanobox-key.json
+    # - echo $GOOGLE_CLOUD_PLATFORM_CREDENTIALS > /blerp-nanobox-key.json
+    - apk add openrc --no-cache
+    # - apk add docker
+    # - service docker start
+    - docker ps
+    - set -e
+    - URL='https://s3.amazonaws.com/tools.nanobox.io/nbx-preview/linux/nbx'
+    - echo 'Downloading nbx...'
+    - curl $URL -o nbx -s
+    - mv nbx /usr/local/bin
+    - chmod +x /usr/local/bin/nbx
+    - echo 'Installation complete.'
+    - echo 'Testing nbx...'
+    - nbx
+    - echo 'Installation was successful!'
+    - which docker
+    - nbx login -u $NANOBOX_LOGIN -P $NANOBOX_PASSWORD
+    - nbx push blerp-core/stageweb
+
+deploy-production:
+  environment:
+    name: production
+    url: https://blerp.com
+  when: manual
+  tags:
+    - docker
+  image: node:8
+  stage: publish
+  only:
+    - master
+  variables:
+    SLS_DEBUG: '*'
+  before_script:
+    - mkdir -p ~/.gcloud/
+    - touch ~/.gcloud/blerp-keyfile.json
+    - echo $GOOGLE_CLOUD_PLATFORM_CREDENTIALS > ~/.gcloud/blerp-keyfile.json
+    - yarn global add serverless firebase-tools
+    - yarn
+  script:
+    - yarn deploy:prod
+    - firebase deploy --project blerp-cf7ae --token $FIREBASE_TOKEN
+
+# semantic-release:
+#   environment: production
+#   when: manual
+#   tags:
+#     - docker
+#   image: node:8
+#   stage: publish
+#   only:
+#     - master
+#   variables:
+#     SLS_DEBUG: '*'
+#   before_script:
+#     - mkdir -p ~/.gcloud/
+#     - touch ~/.gcloud/blerp-keyfile.json
+#     - echo $GOOGLE_CLOUD_PLATFORM_CREDENTIALS > ~/.gcloud/blerp-keyfile.json
+#     - yarn global add serverless firebase-tools
+#     - yarn
+#   script:
+#     # - yarn semantic-release
+#     - yarn build
+#     - rm -rf ./node_modules
+#     - yarn install --production
+#     - yarn deploy:production
+#     - firebase deploy --project blerp-cf7ae --token $FIREBASE_TOKEN

@@ -1,0 +1,52 @@
+{
+    "name": "Blerp",
+    "short_name": "Blerp",
+    "start_url": "/",
+    "theme_color": "#FE295C",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "static/images/icons/icon-114x114.png",
+            "type": "image/png",
+            "sizes": "114x114"
+        },
+        {
+            "src": "static/images/icons/icon-120x120.png",
+            "type": "image/png",
+            "sizes": "120x120"
+        },
+        {
+            "src": "static/images/icons/icon-152x152.png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+        {
+            "src": "static/images/icons/icon-172x172.png",
+            "type": "image/png",
+            "sizes": "172x172"
+        },
+        {
+            "src": "static/images/icons/icon-57x57.png",
+            "type": "image/png",
+            "sizes": "57x57"
+        },
+        {
+            "src": "static/images/icons/icon-60x60.png",
+            "type": "image/png",
+            "sizes": "60x60"
+        },
+        {
+            "src": "static/images/icons/icon-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "prefer_related_applications": true,
+    "related_applications": [
+        {
+            "platform": "play",
+            "id": "com.lolibe.blerp"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+This is a Brave Payments publisher verification file.
+
+Domain: blerp.com
+Token: 055a2e2fa99e51d95b4cd0eb18e5028942da0250e8a4dfa55bcbb9c8609a9b69

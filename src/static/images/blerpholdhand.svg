@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#CF7C8B;}
+	.st2{fill:#91CD94;}
+	.st3{fill:#DEDB87;}
+	.st4{fill:#6C7CB0;}
+	.st5{fill:#7ED1C7;}
+	.st6{fill:#FFFFFF;}
+	.st7{fill:#424242;}
+</style>
+<g>
+	<g>
+		<defs>
+			<path id="SVGID_1_" d="M161.7,109.9c13,9.2,2.3,24.4-17.8,27.3c-10.2,1.4-21.8-0.6-34.2,2.9c-13.7,4-25.5,12.9-35.9,17.3
+				c-17.2,7.2-35.4-2.3-28.8-14.9c13.5-26-14.7-35.6-13.2-49.3c1-9.8,18.5-12.8,25.3-16.6c10.1-5.5,11.8-26,25.5-29.9
+				c12.4-3.5,22.7,14.2,32.9,12.8c8.6-1.2,23.4-7.6,30.4,1.1C154.8,71.5,137.6,92.9,161.7,109.9z"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st0">
+
+				<rect x="-0.9" y="86.5" transform="matrix(0.4833 -0.8755 0.8755 0.4833 -51.647 113.5306)" class="st1" width="142.5" height="28.1"/>
+
+				<rect x="25.3" y="96.1" transform="matrix(0.4833 -0.8755 0.8755 0.4833 -46.5371 141.4037)" class="st2" width="142.5" height="28.1"/>
+
+				<rect x="52.7" y="104.2" transform="matrix(0.4833 -0.8755 0.8755 0.4833 -39.4415 169.6563)" class="st3" width="142.5" height="28.1"/>
+
+				<rect x="82.7" y="107.6" transform="matrix(0.4833 -0.8755 0.8755 0.4833 -26.9901 197.6114)" class="st4" width="142.5" height="28.1"/>
+
+				<rect x="-26.3" y="74.1" transform="matrix(0.4833 -0.8755 0.8755 0.4833 -53.9731 84.9639)" class="st3" width="142.5" height="28.1"/>
+
+				<rect x="-16.9" y="73.3" transform="matrix(0.4833 -0.8755 0.8755 0.4833 -52.9433 85.1002)" class="st5" width="125" height="28.1"/>
+		</g>
+	</g>
+</g>
+<g id="eye-2">
+	<g id="Background-3-2">
+		<g id="Ellipse_2-2">
+
+				<ellipse transform="matrix(0.9966 -8.296508e-02 8.296508e-02 0.9966 -7.7749 6.6602)" class="st6" cx="76.3" cy="96.9" rx="16.1" ry="16.9"/>
+		</g>
+	</g>
+	<g id="Foreground-2">
+		<g id="Ellipse_3-2">
+
+				<ellipse transform="matrix(0.9966 -8.296508e-02 8.296508e-02 0.9966 -7.3181 7.0707)" class="st7" cx="81.4" cy="91.6" rx="7.2" ry="8.6"/>
+		</g>
+	</g>
+</g>
+<path class="st7" d="M110.2,116.2c0,0,1.8,12.2-11.9,13.3c-13.7,1.1-13.9-11.3-13.9-11.3"/>
+<g id="eye-2_1_">
+	<g id="Background-3-2_1_">
+		<g id="Ellipse_2-2_1_">
+
+				<ellipse transform="matrix(0.9966 -8.296508e-02 8.296508e-02 0.9966 -7.1681 9.952)" class="st6" cx="116.2" cy="91.2" rx="16.1" ry="16.9"/>
+		</g>
+	</g>
+	<g id="Foreground-2_1_">
+		<g id="Ellipse_3-2_1_">
+
+				<ellipse transform="matrix(0.9966 -8.296508e-02 8.296508e-02 0.9966 -6.7113 10.3625)" class="st7" cx="121.3" cy="85.9" rx="7.2" ry="8.6"/>
+		</g>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    ["styled-components", { "ssr": true, "displayName": true, "preprocess": false } ],
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
+    ["@babel/plugin-transform-async-to-generator"]
+  ],
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-env": {
+          "targets": {
+            "browsers": ["last 2 versions", "chrome >= 41"],
+            "node": "8.15.0"
+          }
+        }
+      }
+    ]
+  ]
+}

@@ -1,0 +1,22 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "L34HQJYV8U.com.lolibe.blerp",
+                "paths": [
+                    "/",
+                    "/bite/*",
+                    "/soundbites/*",
+                    "/playlist/*",
+                    "/search/*",
+                    "/soundboard/*",
+                    "/board/*",
+                    "/auth-mobile/*",
+                    "/auth-success/*",
+                    "/auth-fail"
+                ]
+            }
+        ]
+    }
+}

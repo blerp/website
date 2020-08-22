@@ -1,0 +1,27 @@
+# BLERP Inc. ("BLERP") CONFIDENTIAL
+# Copyright (c) 2018Blerp LLC All Rights Reserved.
+# This file is subject to the terms and conditions defined in the file 'LICENSE',
+#   which is at the root directory of this source code repository.
+
+service: blerp-sitemap
+
+provider:
+  name: google
+  runtime: nodejs
+  project: ${file(./serverless-config.js):project}
+  # the path to the credentials file needs to be absolute
+  credentials: ~/.gcloud/blerp-keyfile.json
+
+plugins:
+  - serverless-google-cloudfunctions
+  - serverless-webpack
+
+custom:
+  webpackIncludeModules: true
+
+functions:
+  sitemap:
+    handler: sitemap
+    memorySize: 512
+    events:
+      - http: /

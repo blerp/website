@@ -1,0 +1,31 @@
+{
+    "hosting": {
+        "public": "firebase/public",
+        "rewrites": [
+            {
+                "source": "/file/**",
+                "function": "file"
+            },
+            {
+                "source": "/audio/**",
+                "function": "audio"
+            },
+            {
+                "source": "/image/**",
+                "function": "image"
+            },
+            {
+                "source": "/sitemap.xml",
+                "function": "sitemap"
+            },
+            {
+                "source": "/sitemap",
+                "function": "sitemap"
+            },
+            {
+                "source": "**/**",
+                "function": "blerp-web-serverless-dev-mainApp"
+            }
+        ]
+    }
+}

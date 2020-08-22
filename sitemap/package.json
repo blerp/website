@@ -1,0 +1,78 @@
+{
+  "name": "@blerpapp/sitemap",
+  "version": "1.0.0",
+  "description": "Sitemap generating service",
+  "author": "Blerp Inc.",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/blerp/sitemap.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "save": "webpack --config save.config.js && node dist/saveFile",
+    "upload": "webpack --config upload.config.js && node dist/uploadSitemap",
+    "precommit": "lint-staged",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "semantic-release": "semantic-release",
+    "deploy:prod": "ENVIRONMENT='production' serverless deploy",
+    "deploy:staging": "ENVIRONMENT='staging' serverless deploy"
+  },
+  "lint-staged": {
+    "*": [
+      "jest --bail --findRelatedTests"
+    ]
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^2.3.1",
+    "mongodb": "3.2.1",
+    "preact": "8.5.2",
+    "preact-render-to-string": "4.1.0",
+    "saslprep": "^1.0.3"
+  },
+  "release": {
+    "extends": "@blerpapp/semantic-release-config-serverless"
+  },
+  "devDependencies": {
+    "@blerpapp/semantic-release-config-serverless": "1.0.1",
+    "@commitlint/cli": "6.0.2",
+    "@commitlint/config-conventional": "6.0.2",
+    "@types/express": "4.11.0",
+    "@types/jest": "22.0.1",
+    "@types/supertest": "2.0.4",
+    "express": "4.16.2",
+    "husky": "0.14.3",
+    "is-xml": "0.1.0",
+    "jest": "24.9.0",
+    "jest-runner-prettier": "0.2.8",
+    "jest-runner-tslint": "1.0.5",
+    "lint-staged": "6.0.1",
+    "prettier": "1.10.2",
+    "semantic-release": "12.2.4",
+    "serverless-google-cloudfunctions": "1.1.1",
+    "serverless-webpack": "4.2.0",
+    "supertest": "3.0.0",
+    "ts-jest": "24.0.2",
+    "ts-loader": "6.0.4",
+    "tslint": "5.19.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-eslint-rules": "4.1.1",
+    "tslint-plugin-prettier": "2.0.1",
+    "tslint-react": "4.0.0",
+    "typescript": "3.5.3",
+    "webpack": "4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-node-externals": "1.7.2",
+    "xml-formatter": "1.0.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "mapCoverage": true,
+    "projects": [
+      "jest-prettier.config.js",
+      "jest-test.config.js",
+      "jest-tslint.config.js"
+    ]
+  }
+}

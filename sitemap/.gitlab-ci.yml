@@ -1,0 +1,47 @@
+# BLERP LLC ("BLERP") CONFIDENTIAL
+# Copyright (c) 2016 - 2017 Blerp LLC All Rights Reserved.
+# This file is subject to the terms and conditions defined in the file 'LICENSE',
+#   which is at the root directory of this source code repository.
+
+# Running jobs in this sequence allows us to fail fast move on quicker.
+# If the code is bad or incorrect in any way we know, then if the code doesn't work we know, then if everything lines up we publish.
+stages:
+  - test
+  - publish # Publish artifacts
+
+image: node
+
+cache:
+  paths:
+    - node_modules
+  key: "$CI_BUILD_NAME"
+  untracked: true
+    
+jest:
+  tags:
+    - docker
+  stage: test
+  before_script:
+    - yarn
+  script:
+    - yarn jest
+  
+
+semantic-release:
+  environment: production
+  tags:
+    - docker
+  image: node
+  stage: publish
+  only:
+    - master
+  variables:
+    SLS_DEBUG: '*'
+  before_script:
+    - mkdir -p ~/.gcloud/
+    - touch ~/.gcloud/blerp-keyfile.json
+    - echo $GOOGLE_CLOUD_PLATFORM_CREDENTIALS > ~/.gcloud/blerp-keyfile.json
+    - yarn global add serverless
+    - yarn
+  script:
+    - yarn semantic-release

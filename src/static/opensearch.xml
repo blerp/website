@@ -1,0 +1,21 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Blerp Search</ShortName>
+  <Description>The audio search eng for all audio clips and sound bites! Blerp is the best way to search for your favorite sound clips and sound boards.</Description>
+  <Tags>Sounds Clips Bites</Tags>
+  <Contact>support@blerp.com</Contact>
+  <Url type="application/atom+xml" template="https://Blerp.com/search?q={searchTerms}&amp;format=atom"/>
+  <Url type="application/rss+xml" template="https://Blerp.com/search?q={searchTerms}&amp;format=rss"/>
+  <Url type="text/html" template="https://Blerp.com/search?q={searchTerms}"/>
+  <LongName>Example.com Web Search</LongName>
+  <Image height="64" width="64" type="image/png">https://storage.googleapis.com/blerp-web-images/static/icons/icon-60x60.png</Image>
+  <Query role="example" searchTerms="cartoon" />
+  <Developer>Blerp.com Development Team</Developer>
+  <Attribution>
+    Search data Copyright 2018 © Blerp, Inc. All Rights Reserved
+  </Attribution>
+  <SyndicationRight>open</SyndicationRight>
+  <AdultContent>false</AdultContent>
+  <Language>en-us</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <InputEncoding>UTF-8</InputEncoding>
+</OpenSearchDescription>

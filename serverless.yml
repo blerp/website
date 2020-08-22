@@ -1,0 +1,38 @@
+# BLERP Inc. ("BLERP") CONFIDENTIAL
+# Copyright (c) 2016 - 2017 Blerp Inc. All Rights Reserved.
+# This file is subject to the terms and conditions defined in the file 'LICENSE',
+#   which is at the root directory of this source code repository.
+
+service: blerp-web-serverless
+
+provider:
+    name: google
+    runtime: nodejs8
+    project: ${file(./serverless-config.js):project}
+    # the path to the credentials file needs to be absolute
+    # credentials: ~/.gcloud/blerp-keyfile.json
+    credentials: ~/.gcloud/blerp-key-staging.json
+    timemout: 300s
+
+plugins:
+    - serverless-google-cloudfunctions
+
+package:
+    include:
+        - node_modules/**
+        - dist/**
+        - package.json
+    exclude:
+        - ./**
+        - dist/out/**
+
+# Google Cloud Functions assumes that you have a index.js or function.js file with the exported handler functions in the root of your project
+# However you can overwrite this by specifying the entrypoint file with the help of the main config parameter in the projects package.json file.
+# https://serverless.com/framework/docs/providers/google/guide/functions/
+functions:
+    mainApp:
+        handler: mainApp
+        memorySize: 1024
+        events:
+            - http: path
+# https://medium.com/@TheJBStart/google-cloud-functions-serverless-framework-and-environment-variables-b428218decb9
